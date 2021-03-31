@@ -9,7 +9,6 @@ public class MyMazeGenerator extends AMazeGenerator {
         int i, j;
         for (i = 0; i < rows; i++) {
             for (j = 0; j < cols; j++) {
-//                new_maze.array[i][j] = 0; when array is public
                 newArray[i][j] = 1;
             }
         }

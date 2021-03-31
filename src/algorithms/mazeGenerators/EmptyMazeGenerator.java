@@ -9,7 +9,6 @@ public class EmptyMazeGenerator extends AMazeGenerator{
         int i,j;
         for(i=0; i<rows; i++){
             for(j=0; j<cols; j++){
-//                new_maze.array[i][j] = 0; when array is public
                 new_array[i][j] = 0;
             }
         }
