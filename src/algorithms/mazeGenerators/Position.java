@@ -27,4 +27,9 @@ public class Position {
     public void setVisited() {
         visited = 1;
     }
+
+    @Override
+    public String toString() {
+        return "{" + row + "," + col + "}";
+    }
 }

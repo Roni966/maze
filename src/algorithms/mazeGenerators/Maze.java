@@ -42,15 +42,31 @@ public class Maze {
         return startPosition;
     }
 
-    public Position getEndPotision(){
+    public void setStartPosition(Position p){
+        startPosition = p;
+    }
+
+    public Position getGoalPosition() {
         return endPotision;
+    }
+
+    public void setGoalPosition(Position p){
+        endPotision = p;
     }
 
     public void print(){
         for (int i=0; i<rows; i++){
             System.out.print("{");
             for (int j=0; j<cols; j++){
-                System.out.print(" " + array[i][j]);
+                if (i == getStartPosition().getRowIndex() && j == getStartPosition().getColumnIndex()) {
+                    System.out.print(" S");
+                }
+                else if (i == getGoalPosition().getRowIndex() && j == getGoalPosition().getColumnIndex()) {
+                    System.out.print(" E");
+                }
+                else {
+                    System.out.print(" " + array[i][j]);
+                }
             }
             System.out.println(" }");
         }
