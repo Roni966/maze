@@ -7,7 +7,7 @@ public class Maze {
     private int cols;
     private Position startPosition;
     private Position endPotision;
-
+//try
     Maze(int rows, int cols){
         this.array = new int[rows][cols];
         this.rows = rows;
