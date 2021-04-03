@@ -8,7 +8,7 @@ public class SearchableMaze implements ISearchable {
 
     Maze maze;
 
-    SearchableMaze(Maze maze) {
+    public SearchableMaze(Maze maze) {
         this.maze = maze;
     }
 

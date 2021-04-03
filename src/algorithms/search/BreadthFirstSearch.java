@@ -35,4 +35,9 @@ public class BreadthFirstSearch implements ISearchingAlgorithm {
     public int getNumberOfVisitedNodes() {
         return 0;
     }
+
+    @Override
+    public String getName() {
+        return this.getClass().getSimpleName();
+    }
 }

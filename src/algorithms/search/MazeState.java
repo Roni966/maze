@@ -17,10 +17,7 @@ public class MazeState extends AState{
     MazeState(MazeState s) {
         this.p = (s.p);
     }
-    /*MazeState(AState s) {
-        this.p = ((MazeState) s).p;
-    }
-*/
+
     public int getRow(){
         return p.getRowIndex();
     }
