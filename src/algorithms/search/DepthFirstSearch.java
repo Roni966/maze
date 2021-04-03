@@ -3,36 +3,39 @@ package algorithms.search;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class DepthFirstSearch implements ISearchingAlgorithm{
+public class DepthFirstSearch extends ASearchingAlgorithm {
 
-    private int numNodes = 0;
+    AState last;
 
     @Override
-    public AState search(ISearchable s) {
+    public AState solve(ISearchable s) {
         ArrayList<AState> visited = new ArrayList<>();
         AState start = s.getStartState();
-        return DFS(s, start, visited);
+        return DFS(s, start, visited, null);
     }
 
-    private AState DFS(ISearchable s, AState state, ArrayList<AState> arr) {
+    private AState DFS(ISearchable s, AState state, ArrayList<AState> arr, AState prev) {
         arr.add(state);
         if (state.equals(s.getGoalState())) {
-            return s.getGoalState();
+            state.setCameFrom(prev);
+            last = state;
         }
         Iterator<AState> i = s.getAllSuccessors(state).listIterator();
+        numNodes++;
         while (i.hasNext()) {
             AState n = i.next();
-            n.setCameFrom(state);
+            if (n.getCameFrom() == null) {
+                n.setCameFrom(state);
+            }
             if (!arr.contains(n)) {
-                numNodes++;
-                DFS(s, n, arr);
+                DFS(s, n, arr, state);
             }
         }
-        return null;
+        return last;
     }
 
     @Override
-    public int getNumberOfVisitedNodes() {
+    public int getNumberOfNodesEvaluated() {
         return numNodes;
     }
 

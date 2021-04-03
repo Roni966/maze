@@ -12,11 +12,21 @@ public class MyMazeGenerator extends AMazeGenerator {
         boolean[][] grid = new boolean[rows][cols];
         ArrayList<int[]> walls = new ArrayList<>();
         Random random = new Random();
-        int r = 0;
-        int c = 0;
-        newMaze.setStartPosition(new Position(0,0));
-        newMaze.setGoalPosition(new Position(rows-1,cols-1));
-        walls.add(new int[]{r,c,r,c});
+        int r,c;
+        if ((rows%2 != 0 && cols%2 != 0) || (rows%2 == 0 && cols%2 != 0)) {
+            r = 0;
+            c = 0;
+            newMaze.setStartPosition(new Position(0, 0));
+//            newMaze.setGoalPosition(new Position(rows - 1, cols - 1));
+            walls.add(new int[]{r, c, r, c});
+        }
+        else {
+            r = 0;
+            c = 1;
+            newMaze.setStartPosition(new Position(0, 1));
+//            newMaze.setGoalPosition(new Position(rows - 1, cols - 1));
+            walls.add(new int[]{r, c, r, c});
+        }
         while (walls.isEmpty() == false){
             int[] rand = walls.remove( random.nextInt( walls.size() ) );
             r = rand[2];
@@ -50,6 +60,12 @@ public class MyMazeGenerator extends AMazeGenerator {
                     newArray[i][j] = 1;
                 }
             }
+        }
+        if (newArray[rows-1][cols-1] == 0) {
+            newMaze.setGoalPosition(new Position(rows - 1, cols - 1));
+        }
+        else {
+            newMaze.setGoalPosition(new Position(rows - 2, cols - 1));
         }
         newMaze.setArray(newArray);
         return newMaze;

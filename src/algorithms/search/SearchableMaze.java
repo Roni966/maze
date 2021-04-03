@@ -29,45 +29,62 @@ public class SearchableMaze implements ISearchable {
         ArrayList<AState> allStates = new ArrayList<>();
         MazeState m = new MazeState((MazeState) s);
 
-        if (m.getRow() < maze.getRows()) {
+        if (m.getRow() < maze.getRows()-1) {
             MazeState ms = new MazeState(m.getRow()+1,m.getCol());
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                allStates.add(ms);
+            }
         }
-        if (m.getCol() < maze.getCols()) {
+        if (m.getCol() < maze.getCols()-1) {
             MazeState ms = new MazeState(m.getRow(),m.getCol()+1);
-            allStates.add(ms);
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                allStates.add(ms);
+            }
         }
         if (m.getRow() > 0) {
             MazeState ms = new MazeState(m.getRow()-1,m.getCol());
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                allStates.add(ms);
+            }
         }
         if (m.getCol() > 0) {
             MazeState ms = new MazeState(m.getRow(),m.getCol()-1);
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                allStates.add(ms);
+            }
         }
-        if (m.getRow() > 0 && m.getCol() < maze.getCols()) {
+        if (m.getRow() > 0 && m.getCol() < maze.getCols()-1) {
             MazeState ms = new MazeState(m.getRow()-1,m.getCol()+1);
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                if ((maze.getArray()[ms.getRow()+1][ms.getCol()] == 0) || (maze.getArray()[ms.getRow()][ms.getCol()-1] == 0)) {
+                    allStates.add(ms);
+                }
+            }
         }
-        if (m.getRow() < maze.getRows() && m.getCol() < maze.getCols()) {
+        if (m.getRow() < maze.getRows()-1 && m.getCol() < maze.getCols()-1) {
             MazeState ms = new MazeState(m.getRow()+1,m.getCol()+1);
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                if ((maze.getArray()[ms.getRow()-1][ms.getCol()] == 0) || (maze.getArray()[ms.getRow()][ms.getCol()-1] == 0)) {
+                    allStates.add(ms);
+                }
+            }
         }
-        if (m.getRow() < maze.getRows() && m.getCol() > 0) {
+        if (m.getRow() < maze.getRows()-1 && m.getCol() > 0) {
             MazeState ms = new MazeState(m.getRow()+1,m.getCol()-1);
-            allStates.add(ms);
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                if ((maze.getArray()[ms.getRow()-1][ms.getCol()] == 0) || (maze.getArray()[ms.getRow()][ms.getCol()+1] == 0)) {
+                    allStates.add(ms);
+                }
+            }
         }
         if (m.getRow() > 0 && m.getCol() > 0) {
             MazeState ms = new MazeState(m.getRow()-1,m.getCol()-1);
-            allStates.add(ms);
-
+            if (maze.getArray()[ms.getRow()][ms.getCol()] == 0) {
+                if ((maze.getArray()[ms.getRow()+1][ms.getCol()] == 0) || (maze.getArray()[ms.getRow()][ms.getCol()+1] == 0)) {
+                    allStates.add(ms);
+                }
+            }
         }
-
         return allStates;
     }
 }

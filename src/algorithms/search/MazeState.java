@@ -1,6 +1,5 @@
 package algorithms.search;
 
-import algorithms.mazeGenerators.Maze;
 import algorithms.mazeGenerators.Position;
 
 public class MazeState extends AState{
@@ -11,9 +10,9 @@ public class MazeState extends AState{
         this.p = p;
     }
     MazeState(int row,int col) {
-
         this.p = new Position(row,col);
     }
+
     MazeState(MazeState s) {
         this.p = (s.p);
     }
@@ -24,5 +23,20 @@ public class MazeState extends AState{
 
     public int getCol(){
         return p.getColumnIndex();
+    }
+
+    public boolean equals(Object s) {
+        MazeState state = (MazeState) s;
+        if (this.getRow() == state.getRow() && this.getCol() == state.getCol()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "{" + p.getRowIndex() + "," + p.getColumnIndex() + "}";
     }
 }

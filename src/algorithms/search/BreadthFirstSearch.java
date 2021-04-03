@@ -4,36 +4,42 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class BreadthFirstSearch implements ISearchingAlgorithm {
+public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
-    public AState search(ISearchable s) {
+    public AState solve(ISearchable s) {
         AState start = s.getStartState();
-        LinkedList<AState> queue = new LinkedList<AState>();
+        LinkedList<AState> queue = new LinkedList<>();
         queue.add(start);
-        ArrayList<AState> visited = new ArrayList<AState>();
+        ArrayList<AState> visited = new ArrayList<>();
         visited.add(start);
+        AState prev = null;
         while (queue.size() != 0) {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
-                return s.getGoalState();
+                temp.setCameFrom(prev);
+                return temp;
             }
             Iterator<AState> i = s.getAllSuccessors(temp).listIterator();
+            numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-                n.setCameFrom(temp);
+                if (n.getCameFrom() == null) {
+                    n.setCameFrom(temp);
+                }
                 if (!visited.contains(n)) {
                     visited.add(n);
                     queue.add(n);
                 }
             }
+            prev = temp;
         }
         return null;
     }
 
     @Override
-    public int getNumberOfVisitedNodes() {
-        return 0;
+    public int getNumberOfNodesEvaluated() {
+        return numNodes;
     }
 
     @Override
