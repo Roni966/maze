@@ -38,17 +38,7 @@ public abstract class AState implements Comparable<AState> {
         return this.cameFrom;
     }
 
-    public ArrayList<AState> getSolutionPath() {
-        AState temp = this;
-        ArrayList<AState> lst = new ArrayList<>();
-        while (temp.getCameFrom() != null) {
-            lst.add(temp);
-            temp = temp.getCameFrom();
-        }
-        lst.add(temp);
-        Collections.reverse(lst);
-        return lst;
-    }
+
 
     @Override
     public String toString() {

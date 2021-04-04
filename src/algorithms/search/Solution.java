@@ -9,16 +9,18 @@ public class Solution extends AState{
 
     Solution(AState state) {
         this.state = state;
+
     }
 
-//    public ArrayList<AState> getSolutionPath() {
-//        AState temp = state;
-//        ArrayList<AState> lst = new ArrayList<>();
-//        while (temp.getCameFrom() != null) {
-//            lst.add(temp);
-//            temp = temp.getCameFrom();
-//        }
-//        Collections.reverse(lst);
-//        return lst;
-//    }
+    public ArrayList<AState> getSolutionPath() {
+        AState temp = this.state;
+        ArrayList<AState> lst = new ArrayList<>();
+        while (temp.getCameFrom() != null) {
+            lst.add(temp);
+            temp = temp.getCameFrom();
+        }
+        lst.add(temp);
+        Collections.reverse(lst);
+        return lst;
+    }
 }

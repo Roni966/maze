@@ -7,7 +7,7 @@ import java.util.LinkedList;
 public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
-    public AState solve(ISearchable s) {
+    public Solution solve(ISearchable s) {
         AState start = s.getStartState();
         start.setCost(1);
         LinkedList<AState> queue = new LinkedList<>();
@@ -19,7 +19,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
                 //temp.setCameFrom(prev);
-                return temp;
+                Solution sol=new Solution(temp);
+                return  sol;
             }
             Iterator<AState> i = s.getAllSuccessors(temp).listIterator();
             numNodes++;

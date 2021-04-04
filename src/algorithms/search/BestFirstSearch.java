@@ -6,7 +6,7 @@ import java.util.*;
 
 public class BestFirstSearch extends ASearchingAlgorithm {
 
-    public AState solve(ISearchable s) {
+    public Solution solve(ISearchable s) {
         AState start = s.getStartState();
         start.setCost(0);
         PriorityQueue<AState> queue= new PriorityQueue<>();
@@ -18,7 +18,8 @@ public class BestFirstSearch extends ASearchingAlgorithm {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
                 //temp.setCameFrom(prev);
-                return temp;
+                Solution sol=new Solution(temp);
+                return  sol;
             }
             Iterator<AState> i = s.getAllSuccessors(temp).listIterator();
             numNodes++;
