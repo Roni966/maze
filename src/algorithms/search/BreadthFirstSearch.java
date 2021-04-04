@@ -17,7 +17,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         while (queue.size() != 0) {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
-                temp.setCameFrom(prev);
+                //temp.setCameFrom(prev);
                 return temp;
             }
             Iterator<AState> i = s.getAllSuccessors(temp).listIterator();
