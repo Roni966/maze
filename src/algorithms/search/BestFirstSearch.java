@@ -1,7 +1,5 @@
 package algorithms.search;
-import algorithms.mazeGenerators.Position;
 
-import java.io.*;
 import java.util.*;
 
 public class BestFirstSearch extends ASearchingAlgorithm {
@@ -13,11 +11,9 @@ public class BestFirstSearch extends ASearchingAlgorithm {
         queue.add(start);
         ArrayList<AState> visited = new ArrayList<>();
         visited.add(start);
-        AState prev = null;
         while (queue.size() != 0) {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
-                //temp.setCameFrom(prev);
                 Solution sol=new Solution(temp);
                 return  sol;
             }
@@ -25,12 +21,8 @@ public class BestFirstSearch extends ASearchingAlgorithm {
             numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-                //if (n.getCameFrom() == null) {
-                // n.setCameFrom(temp);
-                // }
                 if (!visited.contains(n)) {
                     n.setCameFrom(temp);
-                    prev = temp;
                     visited.add(n);
                     queue.add(n);
                 }
@@ -41,7 +33,6 @@ public class BestFirstSearch extends ASearchingAlgorithm {
                     n.setCameFrom(temp.getCameFrom());
                 }
             }
-            // prev = temp;
         }
         return null;
     }

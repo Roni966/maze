@@ -22,14 +22,12 @@ public class MyMazeGenerator extends AMazeGenerator {
             r = 0;
             c = 0;
             newMaze.setStartPosition(new Position(0, 0));
-//            newMaze.setGoalPosition(new Position(rows - 1, cols - 1));
             walls.add(new int[]{r, c, r, c});
         }
         else {
             r = 0;
             c = 1;
             newMaze.setStartPosition(new Position(0, 1));
-//            newMaze.setGoalPosition(new Position(rows - 1, cols - 1));
             walls.add(new int[]{r, c, r, c});
         }
         while (walls.isEmpty() == false){
@@ -46,14 +44,6 @@ public class MyMazeGenerator extends AMazeGenerator {
                     walls.add( new int[]{r+1,c,r+2,c} );
                 if ( c < cols-2 && grid[r][c+2] == false ) // 2 right
                     walls.add( new int[]{r,c+1,r,c+2} );
-//                if ( x >= 1 && map[x-1][y] == WALL && y < cols-1 ) // up and right
-//                    frontiers.add( new int[]{x-1,y,x-1,y+1} );
-//                if ( x >= 1 && map[x-1][y] == WALL && y >= 1 ) // up and left
-//                    frontiers.add( new int[]{x,y-1,x-1,y-1} );
-//                if ( x < rows-1 && map[x+1][y] == WALL && y < cols-1 ) // down and right
-//                    frontiers.add( new int[]{x+1,y,x+1,y+1} );
-//                if ( y >= 1 && map[x][y-1] == WALL && x < rows-1 ) // down and left
-//                    frontiers.add( new int[]{x+1,y,x+1,y-1} );
             }
         }
         for (int i=0; i<rows; i++) {

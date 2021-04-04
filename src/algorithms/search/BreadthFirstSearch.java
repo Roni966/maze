@@ -14,11 +14,9 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         queue.add(start);
         ArrayList<AState> visited = new ArrayList<>();
         visited.add(start);
-        AState prev = null;
         while (queue.size() != 0) {
             AState temp = queue.poll();
             if (temp.equals(s.getGoalState())){
-                //temp.setCameFrom(prev);
                 Solution sol=new Solution(temp);
                 return  sol;
             }
@@ -26,17 +24,12 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
             numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-                //if (n.getCameFrom() == null) {
-                   // n.setCameFrom(temp);
-               // }
                 if (!visited.contains(n)) {
                     n.setCameFrom(temp);
-                    prev = temp;
                     visited.add(n);
                     queue.add(n);
                 }
             }
-           // prev = temp;
         }
         return null;
     }

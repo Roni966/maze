@@ -21,7 +21,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
             state.setCameFrom(prev);
              last=new Solution(state);
 
-          //  last = state;
         }
         Iterator<AState> i = s.getAllSuccessors(state).listIterator();
         numNodes++;
@@ -29,7 +28,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
             AState n = i.next();
             if (n.getCameFrom() == null) {
                 n.setCameFrom(state);
-                //prev = state;
             }
             if (!arr.contains(n)) {
                 DFS(s, n, arr, state);

@@ -1,8 +1,5 @@
 package algorithms.search;
 
-import java.util.ArrayList;
-import java.util.Collections;
-
 public abstract class AState implements Comparable<AState> {
 
 
