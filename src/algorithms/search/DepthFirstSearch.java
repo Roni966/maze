@@ -11,6 +11,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
     public AState solve(ISearchable s) {
         ArrayList<AState> visited = new ArrayList<>();
         AState start = s.getStartState();
+        start.setCost(1);
         return DFS(s, start, visited, null);
     }
 

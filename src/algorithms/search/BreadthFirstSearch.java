@@ -9,6 +9,7 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
     @Override
     public AState solve(ISearchable s) {
         AState start = s.getStartState();
+        start.setCost(1);
         LinkedList<AState> queue = new LinkedList<>();
         queue.add(start);
         ArrayList<AState> visited = new ArrayList<>();

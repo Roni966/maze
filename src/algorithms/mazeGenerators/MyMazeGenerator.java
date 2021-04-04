@@ -13,7 +13,12 @@ public class MyMazeGenerator extends AMazeGenerator {
         ArrayList<int[]> walls = new ArrayList<>();
         Random random = new Random();
         int r,c;
-        if ((rows%2 != 0 && cols%2 != 0) || (rows%2 == 0 && cols%2 != 0)) {
+        if(rows==2 && cols==2){
+            SimpleMazeGenerator maz = new SimpleMazeGenerator();
+           return maz.generate(rows, cols);
+
+        }
+        else if ((rows%2 != 0 && cols%2 != 0) || (rows%2 == 0 && cols%2 != 0)) {
             r = 0;
             c = 0;
             newMaze.setStartPosition(new Position(0, 0));
