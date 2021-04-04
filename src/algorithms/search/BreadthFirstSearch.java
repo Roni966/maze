@@ -24,15 +24,17 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
             numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-                if (n.getCameFrom() == null) {
-                    n.setCameFrom(temp);
-                }
+                //if (n.getCameFrom() == null) {
+                   // n.setCameFrom(temp);
+               // }
                 if (!visited.contains(n)) {
+                    n.setCameFrom(temp);
+                    prev = temp;
                     visited.add(n);
                     queue.add(n);
                 }
             }
-            prev = temp;
+           // prev = temp;
         }
         return null;
     }
