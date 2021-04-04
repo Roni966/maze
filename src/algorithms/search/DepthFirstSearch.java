@@ -26,6 +26,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
             AState n = i.next();
             if (n.getCameFrom() == null) {
                 n.setCameFrom(state);
+                //prev = state;
             }
             if (!arr.contains(n)) {
                 DFS(s, n, arr, state);
