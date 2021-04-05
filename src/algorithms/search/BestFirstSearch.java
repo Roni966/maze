@@ -21,15 +21,15 @@ public class BestFirstSearch extends ASearchingAlgorithm {
             numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-                if (!visited.contains(n)) {
+                if (!visited.contains(n)&&!queue.contains(n)) {
                     n.setCameFrom(temp);
                     visited.add(n);
                     queue.add(n);
                 }
                 else if (n.getCost()- temp.getCost()<n.getCost()){
-                    if(!queue.contains(n)) {
+                    /*if(!queue.contains(n)) {
                         queue.add(n);
-                    }
+                    }*/
                     n.setCameFrom(temp.getCameFrom());
                 }
             }

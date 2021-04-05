@@ -5,6 +5,10 @@ import java.util.Collections;
 
 public class Solution extends AState{
 
+    public AState getState() {
+        return state;
+    }
+
     private AState state;
 
     Solution(AState state) {
