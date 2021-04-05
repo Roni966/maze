@@ -11,7 +11,7 @@ public class Maze3D {
 
 
     private Position3D startPosition;
-    private Position3D endPotision;
+    private Position3D goalPosition;
 
 
 
@@ -55,12 +55,12 @@ public class Maze3D {
         this.startPosition = startPosition;
     }
 
-    public Position3D getEndPotision() {
-        return endPotision;
+    public Position3D getGoalPosition() {
+        return goalPosition;
     }
 
-    public void setEndPotision(Position3D endPotision) {
-        this.endPotision = endPotision;
+    public void setGoalPosition(Position3D endPosition) {
+        this.goalPosition = endPosition;
     }
 
 
