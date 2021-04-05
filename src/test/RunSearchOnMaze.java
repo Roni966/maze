@@ -15,8 +15,8 @@ public class RunSearchOnMaze {
         SearchableMaze searchableMaze = new SearchableMaze(maze);
 
         solveProblem(searchableMaze, new BreadthFirstSearch());
-       // solveProblem(searchableMaze, new DepthFirstSearch()) ;
-        //solveProblem(searchableMaze, new BestFirstSearch());
+        solveProblem(searchableMaze, new DepthFirstSearch()) ;
+        solveProblem(searchableMaze, new BestFirstSearch());
     }
     private static void solveProblem(ISearchable domain, ISearchingAlgorithm searcher) {
 //Solve a searching problem with a searcher
