@@ -1,6 +1,6 @@
 package algorithms.maze3D;
 
-public class AMaze3DGenerator implements IMaze3DGenerator{
+public abstract class AMaze3DGenerator implements IMaze3DGenerator{
     @Override
     public Maze3D generate(int depth, int row, int column) {
         return null;
