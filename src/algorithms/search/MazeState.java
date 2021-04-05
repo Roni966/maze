@@ -38,7 +38,8 @@ public class MazeState extends AState{
 
     public boolean equals(Object s) {
         MazeState state = (MazeState) s;
-        if (this.getRow() == state.getRow() && this.getCol() == state.getCol()) {
+       if (this.getRow() == state.getRow() && this.getCol() == state.getCol() ) {
+
             return true;
         }
         else {
@@ -50,4 +51,5 @@ public class MazeState extends AState{
     public String toString() {
         return "{" + p.getRowIndex() + "," + p.getColumnIndex() + "}";
     }
+
 }
