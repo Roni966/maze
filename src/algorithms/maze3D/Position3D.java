@@ -26,4 +26,8 @@ public class Position3D {
     public int getDepthIndex() {
         return depth;
     }
+
+    public String toString() {
+        return "{" + depth+ "," + row + "," + column + "}";
+    }
 }

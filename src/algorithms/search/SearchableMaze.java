@@ -15,7 +15,7 @@ public class SearchableMaze implements ISearchable {
     @Override
     public AState getStartState() {
         MazeState start = new MazeState(maze.getStartPosition());
-        start.setName((String.valueOf(maze.getStartPosition().getRowIndex()+1000)+String.valueOf(maze.getStartPosition().getRowIndex()+1000)));
+        start.setName((String.valueOf(maze.getStartPosition().getRowIndex()+1000)+String.valueOf(maze.getStartPosition().getColumnIndex()+1000)));
         return start;
     }
 
@@ -23,7 +23,7 @@ public class SearchableMaze implements ISearchable {
     public AState getGoalState() {
 
         MazeState end = new MazeState(maze.getGoalPosition());
-        end.setName((String.valueOf(maze.getStartPosition().getRowIndex()+1000)+String.valueOf(maze.getStartPosition().getRowIndex()+1000)));
+        end.setName((String.valueOf(maze.getStartPosition().getRowIndex()+1000)+String.valueOf(maze.getStartPosition().getColumnIndex()+1000)));
         return end;
     }
 
