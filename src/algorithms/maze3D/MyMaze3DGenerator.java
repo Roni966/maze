@@ -19,32 +19,22 @@ public class MyMaze3DGenerator extends AMaze3DGenerator {
         ArrayList<int[]> walls = new ArrayList<>();
         Random random = new Random();
         int d,r,c;
-       /* if(rows==2 && cols==2){
-            SimpleMazeGenerator maz = new SimpleMazeGenerator();
-            return maz.generate(rows, cols);
+       // ||(depth%2 != 0 && row%2 == 0&& column%2 != 0)
+        if((depth%2 != 0 && row%2 == 0&& column%2 == 0 )||(depth%2 != 0 && row%2 != 0&& column%2 == 0)){
 
-        }
-        else if ((rows%2 != 0 && cols%2 != 0) || (rows%2 == 0 && cols%2 != 0)) {
-            r = 0;
-            c = 0;
-            newMaze.setStartPosition(new Position(0, 0));
-            walls.add(new int[]{r, c, r, c});
-        }
+        d=0;
+        r = 0;
+        c = 1;
+        newMaze.setStartPosition(new Position3D(0,0,1));
+        walls.add(new int[]{d,r, c,d ,r, c});}
 
-
-        else {
-            r = 0;
-            c = 1;
-            newMaze.setStartPosition(new Position(0, 1));
-            walls.add(new int[]{r, c, r, c});
-        }
-
-        */
+        else{
         d=0;
         r = 0;
         c = 0;
         newMaze.setStartPosition(new Position3D(0,0,0));
         walls.add(new int[]{d,r, c,d ,r, c});
+        }
         while (walls.isEmpty() == false){
             int[] rand = walls.remove( random.nextInt( walls.size() ) );
             d= rand[3];
@@ -66,7 +56,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator {
                     walls.add( new int[]{d-1,r,c,d-2,r,c} );
             }
         }
-        for (int g=0; g<column; g++) {
+        for (int g=0; g<depth; g++) {
             for (int i = 0; i < row; i++) {
                 for (int j = 0; j < column; j++) {
                     if (grid[g][i][j] == true) {
@@ -80,8 +70,15 @@ public class MyMaze3DGenerator extends AMaze3DGenerator {
         if (newArray[depth-1][row-1][column-1] == 0) {
             newMaze.setGoalPosition(new Position3D(depth-1,row - 1, column - 1));
         }
+
+       else if (newArray[depth-1][row-2][column-1] == 0) {
+            newMaze.setGoalPosition(new Position3D(depth-1,row - 2, column - 1));
+        }
+        else if (newArray[depth-2][row-2][column-1] == 0) {
+            newMaze.setGoalPosition(new Position3D(depth-2,row - 2, column - 1));
+        }
         else {
-            newMaze.setGoalPosition(new Position3D(depth-1,row - 2, column- 1));
+            newMaze.setGoalPosition(new Position3D(depth-2,row - 2, column- 2));
         }
         newMaze.setMap(newArray);
         return newMaze;
