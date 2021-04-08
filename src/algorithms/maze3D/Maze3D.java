@@ -69,7 +69,32 @@ public class Maze3D {
     public void setGoalPosition(Position3D endPosition) {
         this.goalPosition = endPosition;
     }
-
+    public void print(){
+        System.out.println("{");
+        for(int depth = 0; depth < map.length; depth++){
+            for(int row = 0; row < map[0].length; row++) {
+                System.out.print("{ ");
+                for (int col = 0; col < map[0][0].length; col++) {
+                    if (depth == startPosition.getDepthIndex() && row == startPosition.getRowIndex() && col == startPosition.getColumnIndex()) // if the position is the start - mark with S
+                        System.out.print("S ");
+                    else {
+                        if (depth == goalPosition.getDepthIndex() && row == goalPosition.getRowIndex() && col == goalPosition.getColumnIndex()) // if the position is the goal - mark with E
+                            System.out.print("E ");
+                        else
+                            System.out.print(map[depth][row][col] + " ");
+                    }
+                }
+                System.out.println("}");
+            }
+            if(depth < map.length - 1) {
+                System.out.print("---");
+                for (int i = 0; i < map[0][0].length; i++)
+                    System.out.print("--");
+                System.out.println();
+            }
+        }
+        System.out.println("}");
+    }/*
     public void print(){
         System.out.print("{\n");
         for (int g=0; g<rows; g++){
@@ -92,5 +117,7 @@ public class Maze3D {
             System.out.println("------------");
     }
         System.out.println("}");
+
     }
+*/
 }

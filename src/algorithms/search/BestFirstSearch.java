@@ -5,6 +5,9 @@ import java.util.*;
 public class BestFirstSearch extends ASearchingAlgorithm {
 
     public Solution solve(ISearchable s) {
+        if(s.getStartState()==null||s.getGoalState()==null){
+            return null;
+        }
         AState start = s.getStartState();
         start.setCost(0);
         boolean visited[] = new boolean[1000000000];

@@ -9,6 +9,9 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public Solution solve(ISearchable s) {
+        if(s.getStartState()==null||s.getGoalState()==null){
+            return null;
+        }
         AState start = s.getStartState();
         start.setCost(1);
         LinkedList<AState> queue = new LinkedList<>();

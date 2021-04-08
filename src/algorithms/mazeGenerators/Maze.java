@@ -13,6 +13,12 @@ public class Maze {
         this.rows = rows;
         this.cols = cols;
     }
+    public Maze(int[][] map,int rows, int cols){
+        this.array = map;
+        this.rows = rows;
+        this.cols = cols;
+    }
+
 
     public int[][] getArray() {
         return array;
@@ -39,19 +45,36 @@ public class Maze {
     }
 
     public Position getStartPosition(){
+        if(startPosition==null)
+        {
+            return null;
+        }
         return startPosition;
     }
 
+
     public void setStartPosition(Position p){
+        if(this.array[p.getRowIndex()][p.getColumnIndex()]!=0) {
+            startPosition = null;
+        }
+            else {
         startPosition = p;
+    }
     }
 
     public Position getGoalPosition() {
+        if(endPotision==null)
+        {
+            return null;
+        }
         return endPotision;
     }
 
     public void setGoalPosition(Position p){
-        endPotision = p;
+        if(this.array[p.getRowIndex()][p.getColumnIndex()]!=0)
+            startPosition=null;
+        else{
+            endPotision = p;}
     }
 
     public void print(){

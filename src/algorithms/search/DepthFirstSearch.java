@@ -9,6 +9,9 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
 
     @Override
     public Solution solve(ISearchable s) {
+        if(s.getStartState()==null||s.getGoalState()==null){
+            return null;
+        }
         //ArrayList<AState> visited = new ArrayList<>();
         AState start = s.getStartState();
         boolean visited[] = new boolean[1000000000];
@@ -19,6 +22,7 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
 
    // private Solution DFS(ISearchable s, AState state, ArrayList<AState> arr, AState prev) {
    private Solution DFS(ISearchable s, AState state, boolean[] arr, AState prev) {
+
         arr[state.hashCode()]=true;
         //arr.add(state);
         if (state.equals(s.getGoalState())) {

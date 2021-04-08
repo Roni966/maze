@@ -18,6 +18,9 @@ public class MazeState extends AState{
 
 
     MazeState(Position p) {
+//        if(p==null){
+//            return null;
+//        }
         this.p = p;
     }
     MazeState(int row,int col) {
