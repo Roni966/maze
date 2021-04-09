@@ -15,14 +15,10 @@ public class MazeState extends AState{
         this.visited = visited;
     }
 
-
-
     MazeState(Position p) {
-//        if(p==null){
-//            return null;
-//        }
         this.p = p;
     }
+
     MazeState(int row,int col) {
         this.p = new Position(row,col);
     }
@@ -41,8 +37,7 @@ public class MazeState extends AState{
 
     public boolean equals(Object s) {
         MazeState state = (MazeState) s;
-       if (this.getRow() == state.getRow() && this.getCol() == state.getCol() ) {
-
+        if (this.getRow() == state.getRow() && this.getCol() == state.getCol() ) {
             return true;
         }
         else {

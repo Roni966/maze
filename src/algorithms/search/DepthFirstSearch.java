@@ -1,6 +1,5 @@
 package algorithms.search;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 
 public class DepthFirstSearch extends ASearchingAlgorithm {
@@ -12,7 +11,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
         if(s.getStartState()==null||s.getGoalState()==null){
             return null;
         }
-        //ArrayList<AState> visited = new ArrayList<>();
         AState start = s.getStartState();
         boolean visited[] = new boolean[1000000000];
 
@@ -20,14 +18,12 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
         return DFS(s, start, visited, null);
     }
 
-   // private Solution DFS(ISearchable s, AState state, ArrayList<AState> arr, AState prev) {
    private Solution DFS(ISearchable s, AState state, boolean[] arr, AState prev) {
 
         arr[state.hashCode()]=true;
-        //arr.add(state);
         if (state.equals(s.getGoalState())) {
             state.setCameFrom(prev);
-             last=new Solution(state);
+            last=new Solution(state);
 
         }
         Iterator<AState> i = s.getAllSuccessors(state).listIterator();
@@ -37,7 +33,6 @@ public class DepthFirstSearch extends ASearchingAlgorithm {
             if (n.getCameFrom() == null) {
                 n.setCameFrom(state);
             }
-           // if (!arr.contains(n)) {
             if(!arr[n.hashCode()]){
                 DFS(s, n, arr, state);
             }

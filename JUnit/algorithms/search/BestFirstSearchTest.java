@@ -13,8 +13,7 @@ class BestFirstSearchTest {
     @Test
     void solve() {
 
-        IMazeGenerator mg = new MyMazeGenerator();
-        //Maze maze = mg.generate(30, 30);
+//        test1
         int[][] map = {{0,1,1},{1,1,1},{1,1,0}};
         Maze M=new Maze(map,3,3);
         M.setStartPosition(new Position(0,0));
@@ -23,7 +22,8 @@ class BestFirstSearchTest {
         BestFirstSearch best = new BestFirstSearch();
         Solution solution = best.solve(searchableMaze);
         assertEquals(null,solution);
-      //test2
+
+//        test2
         int[][] map2 = {{1,1,1},{1,1,1},{1,1,1}};
         Maze M2=new Maze(map2,3,3);
         M2.setStartPosition(new Position(0,0));
@@ -36,12 +36,12 @@ class BestFirstSearchTest {
 //        test3
         int[][] map3 = {{1,1,1},{1,1,1},{1,1,1}};
         Maze M3=new Maze(map3,3,3);
-
         SearchableMaze searchableMaze3 = new SearchableMaze(M3);
         BestFirstSearch best3 = new BestFirstSearch();
         Solution solution3 = best3.solve(searchableMaze3);
         assertEquals(null,solution3);
-       // test4
+
+//        test4
         int[][] map4 = {{1,-1,-1},{-1,-1,-1},{-1,-1,0}};
         Maze M4=new Maze(map4,3,3);
         M4.setStartPosition(new Position(0,0));
@@ -50,7 +50,8 @@ class BestFirstSearchTest {
         BestFirstSearch best4 = new BestFirstSearch();
         Solution solution4 = best4.solve(searchableMaze4);
         assertEquals(null,solution4);
-// test5
+
+//        test5
         IMazeGenerator mg5 = new MyMazeGenerator();
         Maze maze5 = mg5.generate(3, 3);
         maze5.setStartPosition(new Position(0,0));
@@ -60,18 +61,18 @@ class BestFirstSearchTest {
         Solution solution5 = best5.solve(searchableMaze5);
         MazeState MS5= new MazeState(maze5.getGoalPosition());
         assertEquals(MS5,solution5.getState());
-
-
     }
 
     @Test
     void getNumberOfNodesEvaluated() {
+
+//        test1
         BestFirstSearch best = new BestFirstSearch();
         assertEquals(0,best.getNumberOfNodesEvaluated());
+
+//        test2
         int[][] map = {{0,1,0},{0,1,0},{0,0,0}};
         Maze M=new Maze(map,3,3);
-
-
         M.setStartPosition(new Position(0,0));
         M.setGoalPosition(new Position(2,2));
         SearchableMaze searchableMaze = new SearchableMaze(M);
@@ -79,7 +80,7 @@ class BestFirstSearchTest {
         Solution solution = best2.solve(searchableMaze);
         assertEquals(4,best2.getNumberOfNodesEvaluated());
 
-        //test 2
+//        test3
         int[][] map2 = {{1,1,1},{1,1,1},{1,1,1}};
         Maze M2=new Maze(map2,3,3);
         M2.setStartPosition(new Position(0,0));

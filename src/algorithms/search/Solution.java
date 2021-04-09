@@ -5,15 +5,15 @@ import java.util.Collections;
 
 public class Solution extends AState{
 
-    public AState getState() {
-        return state;
-    }
-
     private AState state;
 
     Solution(AState state) {
         this.state = state;
 
+    }
+
+    public AState getState() {
+        return state;
     }
 
     public ArrayList<AState> getSolutionPath() {

@@ -1,15 +1,10 @@
 package algorithms.search;
 
-import java.util.Objects;
-
 public abstract class AState implements Comparable<AState> {
-
-
 
     private String name;
     private AState cameFrom;
     private int cost;
-
 
     public int getCost() {
         return cost;
@@ -18,23 +13,20 @@ public abstract class AState implements Comparable<AState> {
     public void setCost(int cost) {
         this.cost = cost;
     }
-    public int compareTo(AState o) {
 
+    public int compareTo(AState o) {
         if (this.getCost()>=o.getCost()){
             return 1;
-        }return 0;
-
+        }
+        return 0;
     }
 
     public boolean equals(Object o) {
-
         if(((AState) o).getName()==this.getName()){
             return true;
         }
         return false;
     }
-
-
 
     public void setCameFrom(AState s) {
         this.cameFrom = s;
@@ -51,6 +43,7 @@ public abstract class AState implements Comparable<AState> {
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return null;
@@ -58,8 +51,6 @@ public abstract class AState implements Comparable<AState> {
 
     @Override
     public int hashCode() {
-       //return Objects.hash(name, cameFrom, cost);
-        //return name.hashCode();
         return Integer.parseInt(name);
     }
 }

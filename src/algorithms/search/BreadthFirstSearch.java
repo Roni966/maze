@@ -1,9 +1,7 @@
 package algorithms.search;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.PriorityQueue;
 
 public class BreadthFirstSearch extends ASearchingAlgorithm {
 
@@ -15,9 +13,6 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
         AState start = s.getStartState();
         start.setCost(1);
         LinkedList<AState> queue = new LinkedList<>();
-
-      //  ArrayList<AState> visited = new ArrayList<>();
-        //visited.add(start);
         boolean visited[] = new boolean[1000000000];
         visited[start.hashCode()]=true;
         queue.add(start);
@@ -31,11 +26,8 @@ public class BreadthFirstSearch extends ASearchingAlgorithm {
             numNodes++;
             while (i.hasNext()) {
                 AState n = i.next();
-
-                //if (!visited.contains(n)) {
                   if(!visited[n.hashCode()]){
                     n.setCameFrom(temp);
-                   // visited.add(n);
                     visited[n.hashCode()] = true;
                     queue.add(n);
                 }

@@ -1,9 +1,7 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Maze;
 import algorithms.search.AState;
 import algorithms.search.ISearchable;
-import algorithms.search.MazeState;
 
 import java.util.ArrayList;
 
@@ -45,14 +43,11 @@ public class SearchableMaze3D implements ISearchable {
             y=m.getCol();
             y+=500;
             ms.setName(String.valueOf(w)+String.valueOf(x)+String.valueOf(y));
-
             if (maze.getMap()[ms.getDepth()][ms.getRow()][ms.getCol()] == 0) {
                 ms.setCost(s.getCost()+10);
                 allStates.add(ms);
             }
         }
-
-
         //right
         if (m.getCol() < maze.getCols()-1) {
             Maze3DState ms = new Maze3DState(m.getDepth(),m.getRow(),m.getCol()+1);
@@ -68,7 +63,6 @@ public class SearchableMaze3D implements ISearchable {
                 allStates.add(ms);
             }
         }
-
         //down
         if (m.getRow() < maze.getRows()-1) {
             Maze3DState ms = new Maze3DState(m.getDepth(),m.getRow()+1,m.getCol());
@@ -84,7 +78,6 @@ public class SearchableMaze3D implements ISearchable {
                 allStates.add(ms);
             }
         }
-
         //left
         if (m.getCol() > 0) {
             Maze3DState ms = new Maze3DState(m.getDepth(),m.getRow(),m.getCol()-1);
@@ -100,8 +93,7 @@ public class SearchableMaze3D implements ISearchable {
                 allStates.add(ms);
             }
         }
-
-        // depth down
+        //depth down
         if (m.getDepth() > 0) {
             Maze3DState ms = new Maze3DState(m.getDepth()-1,m.getRow(),m.getCol());
             w=m.getDepth()-1;
@@ -116,7 +108,7 @@ public class SearchableMaze3D implements ISearchable {
                 allStates.add(ms);
             }
         }
-        // depth up
+        //depth up
         if (m.getDepth() < maze.getDepth()-1) {
             Maze3DState ms = new Maze3DState(m.getDepth()+1,m.getRow(),m.getCol());
             w=m.getDepth()+1;
@@ -131,7 +123,6 @@ public class SearchableMaze3D implements ISearchable {
                 allStates.add(ms);
             }
         }
-
         return allStates;
     }
 }

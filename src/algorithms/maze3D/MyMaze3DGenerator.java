@@ -1,39 +1,30 @@
 package algorithms.maze3D;
 
-import algorithms.mazeGenerators.Maze;
-import algorithms.mazeGenerators.Position;
-import algorithms.mazeGenerators.SimpleMazeGenerator;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MyMaze3DGenerator extends AMaze3DGenerator {
 
-
     public Maze3D generate(int depth, int row, int column) {
-
-
         Maze3D newMaze = new Maze3D(depth,row, column);
         int[][][] newArray = new int[depth][row][column];
         boolean[][][] grid = new boolean[depth][row][column];
         ArrayList<int[]> walls = new ArrayList<>();
         Random random = new Random();
         int d,r,c;
-       // ||(depth%2 != 0 && row%2 == 0&& column%2 != 0)
         if((depth%2 != 0 && row%2 == 0&& column%2 == 0 )||(depth%2 != 0 && row%2 != 0&& column%2 == 0)){
-
-        d=0;
-        r = 0;
-        c = 1;
-        newMaze.setStartPosition(new Position3D(0,0,1));
-        walls.add(new int[]{d,r, c,d ,r, c});}
-
+            d=0;
+            r = 0;
+            c = 1;
+            newMaze.setStartPosition(new Position3D(0,0,1));
+            walls.add(new int[]{d,r, c,d ,r, c});
+        }
         else{
-        d=0;
-        r = 0;
-        c = 0;
-        newMaze.setStartPosition(new Position3D(0,0,0));
-        walls.add(new int[]{d,r, c,d ,r, c});
+            d=0;
+            r = 0;
+            c = 0;
+            newMaze.setStartPosition(new Position3D(0,0,0));
+            walls.add(new int[]{d,r, c,d ,r, c});
         }
         while (walls.isEmpty() == false){
             int[] rand = walls.remove( random.nextInt( walls.size() ) );
@@ -70,8 +61,7 @@ public class MyMaze3DGenerator extends AMaze3DGenerator {
         if (newArray[depth-1][row-1][column-1] == 0) {
             newMaze.setGoalPosition(new Position3D(depth-1,row - 1, column - 1));
         }
-
-       else if (newArray[depth-1][row-2][column-1] == 0) {
+        else if (newArray[depth-1][row-2][column-1] == 0) {
             newMaze.setGoalPosition(new Position3D(depth-1,row - 2, column - 1));
         }
         else if (newArray[depth-2][row-2][column-1] == 0) {

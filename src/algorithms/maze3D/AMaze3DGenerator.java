@@ -1,6 +1,7 @@
 package algorithms.maze3D;
 
 public abstract class AMaze3DGenerator implements IMaze3DGenerator{
+
     @Override
     public Maze3D generate(int depth, int row, int column) {
         return null;
@@ -13,5 +14,4 @@ public abstract class AMaze3DGenerator implements IMaze3DGenerator{
         long end_time = System.currentTimeMillis();
         return (end_time - start_time);
     }
-
 }
