@@ -94,4 +94,23 @@ public class Maze {
             System.out.println(" }");
         }
     }
+    public byte[] toByteArray(){
+        byte[] byteArray = new byte[rows*cols];
+       /* int r=this.rows;
+        byteArray[0]=;
+        byteArray[1]=;
+*/
+        int counter=0;
+        for (int i=0; i<rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                byteArray[counter] = (byte) this.array[i][j];
+                counter++;
+            }
+        }
+        return byteArray;
+    }
+    public Maze (byte[] b){
+
+    }
+
 }
