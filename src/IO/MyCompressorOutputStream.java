@@ -11,27 +11,33 @@ public class MyCompressorOutputStream extends OutputStream {
     public MyCompressorOutputStream(OutputStream OS){
         out=OS;
     }
+
     @Override
     public void write(int b) throws IOException {
-            out.write((byte)b);
+            out.write(b);
+       System.out.println(b);
     }
+/*
     public void write(byte[]b) throws IOException {
-      int cur= b[0];
+      int cur= b[24];
       int counter=1;
 
-      for(int i=1;i<b.length;i++){
+      for(int i=25;i<b.length;i++){
             if(b[i]==cur){
 
                 if(counter==255){
-                    out.write(b[i]);
-                    out.write(counter);
+                    //out.write(b[i]);
+                    this.write(counter);
+                   // out.write(counter);
                     if(b[i]==0){
-                        out.write(1);
-                        out.write(0);
+                      //  out.write(1);
+                        this.write(counter);
+                        //out.write(0);
                     }
                     else{
-                        out.write(0);
-                        out.write(0);
+                        //out.write(0);
+                        this.write(counter);
+                      //  out.write(0);
                     }
 
                     counter=0;
@@ -39,11 +45,14 @@ public class MyCompressorOutputStream extends OutputStream {
                 counter++;
             }
             else{
-                out.write(b[i]);
-                out.write(counter);
+                //out.write(b[i]);
+              //  out.write(counter);
+                this.write(counter);
+
+
                 cur=b[i];
                 counter=1;
             }
       }
-    }
+    }*/
 }
