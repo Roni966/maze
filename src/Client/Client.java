@@ -7,6 +7,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 public class Client {
+
     private InetAddress serverIP;
     private int serverPort;
     private IClientStrategy strategy;

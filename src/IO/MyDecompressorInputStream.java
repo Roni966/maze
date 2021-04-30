@@ -10,33 +10,40 @@ public class MyDecompressorInputStream extends InputStream {
     public MyDecompressorInputStream(InputStream IS){
         in=IS;
     }
+
     @Override
     public int read() throws IOException {
         return this.in.read();
-           // byte b= (byte)in.read();
-            //return b &0xFF;
-      //  return 0;
     }
 
     @Override
     public int read(byte[] b) throws IOException {
-       /* byte [] byteArray= new byte[b.length];
-        int counter=0;
-       // return super.read(b);
-        //  return 0;
-        for(int i=0;i<b.length;i++){
-            for(int j=0;j<b[i];j++){
-                if(i%2==0) {
-                    byteArray[counter] = 0;
-                    counter++;
+        int val = in.read();
+        int counter = 0;
+        int num = 0;
+        while (val != -1) {
+            if (counter < 24) {
+                b[counter] = (byte) val;
+                counter++;
+            }
+            else {
+                for (int i = 0; i < val; i++) {
+                    if (num == 0) {
+                        b[counter] = (byte) 0;
+                        counter++;
+                    } else {
+                        b[counter] = (byte) 1;
+                        counter++;
+                    }
                 }
-                else{
-                    byteArray[counter] = 1;
+                if (num == 0) {
+                    num = 1;
+                } else {
+                    num = 0;
                 }
             }
+            val = in.read();
         }
-*/
-
         return this.in.read(b);
     }
 }

@@ -95,45 +95,82 @@ public class Maze {
     public byte[] toByteArray() {
         byte[] byteArray = new byte[(rows * cols) + 24];
         //rows 0-3
-        int a = rows % 255;
-        int b = rows / 255;
+        int rowsM = rows % 255;
+        int rowsD = rows / 255;
         for (int i = 0; i < 4; i++) {
-            if (i < b) {
+            if (i < rowsD) {
                 byteArray[i] = (byte) 255;
-            } else if (i == b) {
-                byteArray[i] = (byte) a;
+            } else if (i == rowsD) {
+                byteArray[i] = (byte) rowsM;
             } else {
                 byteArray[i] = 0;
             }
         }
         // cols 4-7
-        int c = cols % 255;
-        int d = cols / 255;
-
+        int colsM = cols % 255;
+        int colsD = cols / 255;
         for (int i = 4; i < 8; i++) {
             int j = i - 4;
-            if (j < d) {
+            if (j < colsD) {
                 byteArray[i] = (byte) 255;
-            } else if (j == d) {
-                byteArray[i] = (byte) c;
+            } else if (j == colsD) {
+                byteArray[i] = (byte) colsM;
             } else {
                 byteArray[i] = 0;
             }
         }
-        //
-        int e = startPosition.getRowIndex() % 255;
-        int f = startPosition.getRowIndex() / 255;
-        for (int i = 9; i < 12; i++) {
-            int j = i - 4;
-            if (j < d) {
-                byteArray[i] = (byte) 255;
-            } else if (j == d) {
-                byteArray[i] = (byte) c;
+        //Start Position 8-15
+        int startRowM = startPosition.getRowIndex() % 255;
+        int startRowD = startPosition.getRowIndex() / 255;
+        int startColM = startPosition.getColumnIndex() % 255;
+        int startColD = startPosition.getColumnIndex() / 255;
+        for (int i = 8; i < 16; i++) {
+            int j = i - 8;
+            int k = i -12;
+            if (i < 12) {
+                if (j < startRowD) {
+                    byteArray[i] = (byte) 255;
+                } else if (j == startRowD) {
+                    byteArray[i] = (byte) startRowM;
+                } else {
+                    byteArray[i] = 0;
+                }
             } else {
-                byteArray[i] = 0;
+                if (k < startColD) {
+                    byteArray[i] = (byte) 255;
+                } else if (k == startColD) {
+                    byteArray[i] = (byte) startColM;
+                } else {
+                    byteArray[i] = 0;
+                }
             }
         }
-
+        //End Position 16-23
+        int endRowM = endPotision.getRowIndex() % 255;
+        int endRowD = endPotision.getRowIndex() / 255;
+        int endColM = endPotision.getColumnIndex() % 255;
+        int endColD = endPotision.getColumnIndex() / 255;
+        for (int i = 16; i < 24; i++) {
+            int j = i - 16;
+            int k = i - 20;
+            if (i < 20) {
+                if (j < endRowD) {
+                    byteArray[i] = (byte) 255;
+                } else if (j == endRowD) {
+                    byteArray[i] = (byte) endRowM;
+                } else {
+                    byteArray[i] = 0;
+                }
+            } else {
+                if (k < endColD) {
+                    byteArray[i] = (byte) 255;
+                } else if (k == endColD) {
+                    byteArray[i] = (byte) endColM;
+                } else {
+                    byteArray[i] = 0;
+                }
+            }
+        }
 
         int counter = 24;
         for (int i = 0; i < rows; i++) {
@@ -148,7 +185,8 @@ public class Maze {
     public Maze(byte[] b) {
         //  Maze Parameters
         int x = 0;
-        int rows = 0;
+        int y = 0;
+        int startX = 0, startY = 0, endX = 0, endY = 0;
         for (int i = 0; i < 24; i++) {
             if (i < 4) {
                 x = x + (b[i] & 0xFF);
@@ -164,9 +202,35 @@ public class Maze {
             if (i == 8) {
                 this.cols = x;
                 x = 0;
-
+                x = x + (b[i] & 0xFF);
             }
-
+            if (i > 8 && i < 16) {
+                if (i < 12) {
+                    x = x + (b[i] & 0xFF);
+                }
+                else {
+                    y = y + (b[i] & 0xFF);
+                }
+            }
+            if (i == 16) {
+                startX = x;
+                startY = y;
+                x = 0;
+                y = 0;
+                x = x + (b[i] & 0xFF);
+            }
+            if (i > 16) {
+                if (i < 20) {
+                    x = x + (b[i] & 0xFF);
+                }
+                else {
+                    y = y + (b[i] & 0xFF);
+                }
+            }
+            if (i == 23) {
+                endX = x;
+                endY = y;
+            }
         }
         int[][] a = new int[this.rows][this.cols];
         // actual Maze
@@ -183,8 +247,7 @@ public class Maze {
         }
         this.array = new int[this.rows][cols];
         this.array=a;
-        this.setStartPosition(new Position(0,0));
-        this.setGoalPosition(new Position(2,2));
-
+        this.setStartPosition(new Position(startX,startY));
+        this.setGoalPosition(new Position(endX,endY));
     }
 }

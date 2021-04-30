@@ -8,6 +8,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 
 public class Server {
+
     private int port;
     private int listeningIntervalMS;
     private IServerStrategy strategy;
