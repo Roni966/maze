@@ -17,14 +17,13 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy {
         try {
             ObjectInputStream fromClient = new ObjectInputStream(inFromClient);
             ObjectOutputStream toClient = new ObjectOutputStream(outToClient);
-            Maze M= (Maze)fromClient.readObject();
+            Maze M = (Maze)fromClient.readObject();
             SearchableMaze searchableMaze = new SearchableMaze(M);
             Solution solution =  new BestFirstSearch().solve(searchableMaze);
             toClient.writeObject(solution);
             toClient.flush();
             fromClient.close();
             toClient.close();
-
 
         } catch (Exception e) {
             e.printStackTrace();
