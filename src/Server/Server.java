@@ -21,7 +21,7 @@ public class Server {
         this.port = port;
         this.listeningIntervalMS = listeningIntervalMS;
         this.strategy = strategy;
-        this.threadPool = Executors.newFixedThreadPool(2);
+        this.threadPool = Executors.newFixedThreadPool(10);
     }
 
     public void runServer(){
@@ -35,20 +35,24 @@ public class Server {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Client accepted: " + clientSocket.toString());
 
-//                    handleClient(clientSocket);
-//                    threadPool.submit(() -> {
-//                        handleClient(clientSocket);
-//                    });
-                    try {
-                        strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
-                        clientSocket.close();
-                    } catch (IOException e){
-                        e.printStackTrace();
-                    }
+                   // handleClient(clientSocket);
+
+                    threadPool.submit(() -> {
+                        handleClient(clientSocket);
+                    });
+//                    try {
+//                        strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
+//                        clientSocket.close();
+//                    } catch (IOException e){
+//                        e.printStackTrace();
+//                    }
                 } catch (SocketTimeoutException e){
                     System.out.println("Socket timeout");
                 }
             }
+            serverSocket.close();
+            //threadPool.shutdown(); // do not allow any new tasks into the thread pool (not doing anything to the current tasks and running threads)
+            threadPool.shutdownNow();
         } catch (IOException e) {
             e.printStackTrace();
         }

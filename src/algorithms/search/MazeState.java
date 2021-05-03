@@ -2,7 +2,9 @@ package algorithms.search;
 
 import algorithms.mazeGenerators.Position;
 
-public class MazeState extends AState{
+import java.io.Serializable;
+
+public class MazeState extends AState implements Serializable {
 
     Position p;
     private boolean visited;

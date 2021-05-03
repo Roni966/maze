@@ -1,6 +1,7 @@
 package Server;
 
 import algorithms.mazeGenerators.Maze;
+import algorithms.search.AState;
 import algorithms.search.BestFirstSearch;
 import algorithms.search.SearchableMaze;
 import algorithms.search.Solution;
@@ -20,6 +21,8 @@ public class ServerStrategySolveSearchProblem implements IServerStrategy {
             Maze M = (Maze)fromClient.readObject();
             SearchableMaze searchableMaze = new SearchableMaze(M);
             Solution solution =  new BestFirstSearch().solve(searchableMaze);
+            System.out.println(String.format("Solution steps: %s", solution));
+
             toClient.writeObject(solution);
             toClient.flush();
             fromClient.close();

@@ -3,7 +3,7 @@ package algorithms.mazeGenerators;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MyMazeGenerator extends AMazeGenerator {
+public class MyMazeGenerator extends AMazeGenerator  {
 
     @Override
     public Maze generate(int rows, int cols) {
