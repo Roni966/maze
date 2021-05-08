@@ -1,11 +1,12 @@
 package Server;
 
-import Server.IServerStrategy;
-
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketTimeoutException;
+import java.util.Properties;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -21,7 +22,26 @@ public class Server {
         this.port = port;
         this.listeningIntervalMS = listeningIntervalMS;
         this.strategy = strategy;
-        this.threadPool = Executors.newFixedThreadPool(10);
+        String gen="";
+       /* try (InputStream input = new FileInputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
+
+            Properties prop = new Properties();
+
+            // load a properties file
+            prop.load(input);
+
+            // get the property value and print it out
+            gen= prop.getProperty("mazeSearchingAlgorithm");
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }*/
+        Configurations S=Configurations.getInstance();
+        gen= S.getPoolSize();
+        this.threadPool = Executors.newFixedThreadPool(Integer.valueOf(gen) );
+
+       // this.threadPool = Executors.newFixedThreadPool(3);
+
     }
 
     public void runServer(){
@@ -30,16 +50,20 @@ public class Server {
             serverSocket.setSoTimeout(listeningIntervalMS);
             System.out.println("Starting server at port = " + port);
 
-            while (!stop) {
+           while (!stop) {
                 try {
                     Socket clientSocket = serverSocket.accept();
                     System.out.println("Client accepted: " + clientSocket.toString());
 
                    // handleClient(clientSocket);
-
-                    threadPool.submit(() -> {
+                    threadPool.execute(() -> {
                         handleClient(clientSocket);
+
                     });
+
+
+
+
 //                    try {
 //                        strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
 //                        clientSocket.close();
@@ -60,7 +84,7 @@ public class Server {
 
     private void handleClient(Socket clientSocket) {
         try {
-            strategy.applyStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
+            strategy.ServerStrategy(clientSocket.getInputStream(), clientSocket.getOutputStream());
             System.out.println("Done handling client: " + clientSocket.toString());
             clientSocket.close();
         } catch (IOException e){

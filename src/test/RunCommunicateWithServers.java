@@ -27,8 +27,13 @@ public class RunCommunicateWithServers {
         mazeGeneratingServer.start();
 //        stringReverserServer.start();
 //Communicating with servers
-        CommunicateWithServer_MazeGenerating();
-         CommunicateWithServer_SolveSearchProblem();
+//        CommunicateWithServer_MazeGenerating();
+//        CommunicateWithServer_MazeGenerating();
+            CommunicateWithServer_MazeGenerating();
+//
+//        CommunicateWithServer_SolveSearchProblem();
+//        CommunicateWithServer_SolveSearchProblem();
+        CommunicateWithServer_SolveSearchProblem();
 //        CommunicateWithServer_StringReverser();
 //Stopping all servers
         mazeGeneratingServer.stop();
