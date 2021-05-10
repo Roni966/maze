@@ -1,7 +1,5 @@
 package Client;
 
-import Client.IClientStrategy;
-
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;

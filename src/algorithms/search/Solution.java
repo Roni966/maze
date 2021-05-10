@@ -35,6 +35,7 @@ public class Solution extends AState implements Serializable {
         }
         lst.add(temp);
         Collections.reverse(lst);
+        Collections.reverse(x);
         return x;
     }
 
