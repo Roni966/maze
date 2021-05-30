@@ -1,6 +1,8 @@
 package algorithms.mazeGenerators;
 
 import java.io.Serializable;
+import java.util.Arrays;
+
 public class Maze implements Serializable {
 
     private int array[][];
@@ -250,5 +252,16 @@ public class Maze implements Serializable {
         this.array=a;
         this.setStartPosition(new Position(startX,startY));
         this.setGoalPosition(new Position(endX,endY));
+    }
+
+    @Override
+    public String toString() {
+        return "Maze{" +
+                "array=" + Arrays.toString(array) +
+                ", rows=" + rows +
+                ", cols=" + cols +
+                ", startPosition=" + startPosition +
+                ", endPotision=" + endPotision +
+                '}';
     }
 }

@@ -27,14 +27,12 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
                 Maze M= MMG.generate(dimensions[0],dimensions[1]);
                 byte[] ByteMaze=M.toByteArray();
                 compress.write(ByteMaze);
-                System.out.println("empty");
             }
             else if (gen.equals("1")) {
                 SimpleMazeGenerator MMG= new SimpleMazeGenerator();
                 Maze M= MMG.generate(dimensions[0],dimensions[1]);
                 byte[] ByteMaze=M.toByteArray();
                 compress.write(ByteMaze);
-                System.out.println("Simple");
 
             }
             else if (gen.equals("2")) {
@@ -42,7 +40,6 @@ public class ServerStrategyGenerateMaze implements IServerStrategy{
                 Maze M= MMG.generate(dimensions[0],dimensions[1]);
                 byte[] ByteMaze=M.toByteArray();
                 compress.write(ByteMaze);
-                System.out.println("MyMaze");
             }
             toClient.writeObject(b.toByteArray());
             toClient.flush();

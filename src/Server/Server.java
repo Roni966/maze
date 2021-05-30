@@ -38,7 +38,7 @@ public class Server {
 
                     });
                 } catch (SocketTimeoutException e){
-                    System.out.println("Socket timeout");
+                   // System.out.println("Socket timeout");
                 }
             }
             serverSocket.close();

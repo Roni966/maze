@@ -10,7 +10,7 @@ public class Configurations {
 
     public String getGen(){
         String gen="";
-        try (InputStream input = new FileInputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("resources\\config.properties")) {
             Properties prop = new Properties();
             // load a properties file
             prop.load(input);
@@ -23,7 +23,7 @@ public class Configurations {
     }
     public String getSearch(){
         String Search="";
-        try (InputStream input = new FileInputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("resources\\config.properties")) {
             Properties prop = new Properties();
             // load a properties file
             prop.load(input);
@@ -36,7 +36,7 @@ public class Configurations {
     }
     public String getPoolSize(){
         String Size="";
-        try (InputStream input = new FileInputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
+        try (InputStream input = new FileInputStream("resources\\config.properties")) {
             Properties prop = new Properties();
             // load a properties file
             prop.load(input);
@@ -55,8 +55,10 @@ public class Configurations {
         return Configurations.instance;
     }
     public Configurations() {
-        try (OutputStream output = new FileOutputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
-            // set the properties value
+       // try (OutputStream output = new FileOutputStream("C:\\Users\\Owner\\IdeaProjects\\maze\\resources\\config.properties")) {
+            try (OutputStream output = new FileOutputStream("resources\\config.properties")) {
+
+                // set the properties value
             prop = new Properties();
             prop.setProperty("threadPoolSize", "3");
             prop.setProperty("mazeGeneratingAlgorithm", "2");
